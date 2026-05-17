@@ -18,7 +18,7 @@ export default function MeetingsPage({username}) {
             fetchMeetings();
         }, []);
 
-    async function handleNewMeeting(meeting) {
+ async function handleNewMeeting(meeting) {
      const response = await fetch('/api/meetings', {
          method: 'POST',
          body: JSON.stringify(meeting),
@@ -28,8 +28,11 @@ export default function MeetingsPage({username}) {
          const nextMeetings = [...meetings, meeting];
          setMeetings(nextMeetings);
          setAddingNewMeeting(false);
-     }
+        }
     }
+
+
+
 
  async function handleDeleteMeeting(meeting) {
         const response = await fetch(`/api/meetings/${meeting.id}`, {
@@ -41,7 +44,6 @@ export default function MeetingsPage({username}) {
             setMeetings(nextMeetings);
         }
     }
-
     return (
         <div>
             <h2>Zajęcia ({meetings.length})</h2>
